@@ -9,6 +9,21 @@ const directoryPath = path.join(__dirname, 'XNB');
 const CP_path = path.join(__dirname, 'CP/assets');
 
 let XNB_folders = scan_dir(directoryPath)
+let XNB_characters;
+let XNB_farmer;
+XNB_folders.then(async function (XNB_folders) {
+    if (XNB_folders.indexOf("Characters") > -1) {
+        scan_dir(path.join(directoryPath, "Characters")).then(d => {
+            XNB_characters = d;
+            for (f in XNB_characters) {
+                scan_dir(path.join(directoryPath, "Characters", "Farmer")).then(d => {
+                    XNB_farmer = d;
+                })
+            }
+        })
+    }
+})
+
 
 //fs.pathExists(CP_path, (err, exists) => {
     //if (exists) {
@@ -28,6 +43,14 @@ let XNB_folders = scan_dir(directoryPath)
 console.log("eee")
 //reoslve the XNB_folders promise
 function switch_stuff() {
+    if (XNB_characters && XNB_farmer) {
+        for (f in XNB_farmer) {
+            let $_ = XNB_farmer[f]
+            changes.push(
+                change_generate("Characters/Farmer/" + $_, "assets" + "/Characters/Farmer/" + $_)
+            )
+        }
+    }
     XNB_folders.then(async function(XNB_folders){
         for (f in XNB_folders) {
             switch (XNB_folders[f]) {
@@ -193,3 +216,12 @@ function switch_stuff() {
         });
     })
 }
+
+/*
+    TODO:
+        -Characters/*
+        -Data/*
+        -Maps/Mines
+        -LooseSprites/Lighting
+        -Strings/schedules
+*/
