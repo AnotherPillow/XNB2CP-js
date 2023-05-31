@@ -1,8 +1,11 @@
-# Stardew XNB to Content Patcher
+# THIS PROJECT IS OUTDATED. PLEASE USE [XNB2CP-py](https://github.com/anotherpillow/XNB2CP-py)
+
+
+### Stardew XNB to Content Patcher
 
 This is a program to convert XNB mods to Content Patcher. It will automatically generate the content.json and assets folder. You must provide the manifest.json.
 
-## Usage
+### Usage
 
 - Install [Node.js](https://nodejs.dev/download).
 - Place the XNB mod in the XNB folder. It **MUST** be ordered in where it would go in the content folder.
